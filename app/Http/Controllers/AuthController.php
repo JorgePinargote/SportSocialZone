@@ -68,12 +68,21 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
+
         $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
+
+        $tokenResult = $user->createToken('Personal Access Token', ['ver']);
+
+        if(strcmp($user->tipo, 'entrenador') == 0){
+            $tokenResult = $user->createToken('Personal Access Token', ['crear']);
+        }
+
         $token = $tokenResult->token;
+
         if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
@@ -104,5 +113,10 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+
     }
+
+
+
+
 }
