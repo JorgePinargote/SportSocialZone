@@ -47,6 +47,10 @@ class AuthServiceProvider extends ServiceProvider
 
             'crud-comentarios' => 'gestion de comentarios',
 
+            // Permiso para el usuario normal
+
+            'follow' => 'Puede seguir a equipos',
+
 
         ]);
 

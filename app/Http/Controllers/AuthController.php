@@ -26,7 +26,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'tipo' => array(
                 'required',
-                'min:8',
+                'min:7',
                 'max:32',
                 'regex:(entrenador|general)'),
             'password' => 'required|string|confirmed'
@@ -71,10 +71,10 @@ class AuthController extends Controller
 
         $user = $request->user();
 
-        $tokenResult = $user->createToken('Personal Access Token', ['ver']);
+        $tokenResult = $user->createToken('Personal Access Token', ['follow']);
 
         if(strcmp($user->tipo, 'entrenador') == 0){
-            $tokenResult = $user->createToken('Personal Access Token', ['crear']);
+            $tokenResult = $user->createToken('Personal Access Token');
         }
 
         $token = $tokenResult->token;
