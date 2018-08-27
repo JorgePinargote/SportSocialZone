@@ -42,8 +42,6 @@ Route::group([
         Route::get('noticias-equipo/{equipo}','EquipoController@noticiasPorEquipo');
 
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
-        
-        
 
         
         //Route::get('storenoticia/{equipo}','NoticiaController@storeNoticia');
@@ -55,6 +53,15 @@ Route::group([
         Route::get('follow/{equipo}','FollowController@isFollowed');
 
         Route::get('publicaciones','PublicacionController@PublicacionesByFollow');
+
+        //Comentarios 
+        Route::post('comment','CommentController@store');
+        Route::delete('comment/{comment}','CommentController@destroy');
+        Route::get('comment/{idpublicacion}','CommentController@commentByPublicacion');
+
+
+
+        
 
 
     });

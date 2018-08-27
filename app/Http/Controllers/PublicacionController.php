@@ -21,27 +21,6 @@ class PublicacionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Publicacion  $publicacion
@@ -51,41 +30,6 @@ class PublicacionController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Publicacion  $publicacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Publicacion $publicacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Publicacion  $publicacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Publicacion $publicacion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Publicacion  $publicacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Publicacion $publicacion)
-    {
-        //
-    }
-
 
     /* Esta funcion obtiene las publicaciones por los equipos seguidos del usuario actual */
     public function PublicacionesByFollow(){
@@ -102,5 +46,7 @@ class PublicacionController extends Controller
         }
         return $array;
     }
+
+
 
 }
