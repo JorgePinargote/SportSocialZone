@@ -20,6 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
+Route::get('grafico-userstoday','Graficosyreporte@usersToday');
+Route::get('grafico-equipos-deporte','Graficosyreporte@equiposDeporte');
+Route::post('helpmail','HelpMailController@sendHelpMail');
+
+
+
 
 Route::group([
     'prefix' => 'auth'
@@ -27,6 +33,8 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::get('testmongo','PublicacionController@index');
+
+
   
     Route::group([
       'middleware' => 'auth:api'
@@ -36,20 +44,16 @@ Route::group([
         Route::get('user', 'AuthController@user');
 
         Route::resource('equipo','EquipoController'); 
-
         Route::resource('noticia','NoticiaController');
 
         Route::get('noticias-equipo/{equipo}','EquipoController@noticiasPorEquipo');
-
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
-
-        
-        //Route::get('storenoticia/{equipo}','NoticiaController@storeNoticia');
         
         // rutas para el usuario general
 
         Route::post('follow','FollowController@store');
         Route::delete('follow/{follow}','FollowController@destroy');
+
         Route::get('follow/{equipo}','FollowController@isFollowed');
 
         Route::get('publicaciones','PublicacionController@PublicacionesByFollow');
@@ -58,6 +62,9 @@ Route::group([
         Route::post('comment','CommentController@store');
         Route::delete('comment/{comment}','CommentController@destroy');
         Route::get('comment/{idpublicacion}','CommentController@commentByPublicacion');
+
+        //graficos
+        Route::get('grafico-noticias-equipo','Graficosyreporte@noticiasEquipo');
 
 
 
