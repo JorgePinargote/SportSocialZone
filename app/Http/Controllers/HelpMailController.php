@@ -10,8 +10,7 @@ use App\Mail\helpMail;
 
 class HelpMailController extends Controller
 {
-    //
-
+    
     public function sendHelpMail(Request $request){
 
         $input = request()->all();
