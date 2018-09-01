@@ -85,10 +85,10 @@
                         $('#Usuarios-button').on('click', funcion(e){
                             e.preventDefault();
                             $('#usuarios-graph').html('cargando...');
-                            $.get('', function(data){
-                                 var usuarios = [];
+                            $.get('Graficosyreporte.php', function(data){
+                                 var usuarios = '';
                                  $.each(data, function(){
-                                    usuarios = this;
+                                    usuarios = this + '<br>';
                                  })
                                  $('#usuarios-graph').html(usuarios)
                                  $('#Usuarios-button').hide()
