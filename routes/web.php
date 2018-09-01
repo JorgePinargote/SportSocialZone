@@ -19,10 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::get('grafico-userstoday','Graficosyreporte@usersToday');
 Route::get('grafico-equipos-deporte','Graficosyreporte@equiposDeporte');
 Route::post('helpmail','HelpMailController@sendHelpMail');
+
+
 
 
 Route::group([
@@ -34,7 +35,6 @@ Route::group([
     Route::group([
       'middleware' => 'auth'
     ], function() {
-
         Route::get('user', 'AuthController@user');
 
         Route::resource('equipo','EquipoController'); 
@@ -42,8 +42,6 @@ Route::group([
 
         Route::get('noticias-equipo/{equipo}','EquipoController@noticiasPorEquipo');
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
-        
-
         // rutas para el usuario general
 
         Route::post('follow','FollowController@store');
@@ -60,7 +58,6 @@ Route::group([
 
         //graficos
         Route::get('grafico-noticias-equipo','Graficosyreporte@noticiasEquipo');
-
     });
 });
 
