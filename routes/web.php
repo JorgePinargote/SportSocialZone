@@ -25,16 +25,18 @@ Route::post('helpmail','HelpMailController@sendHelpMail');
 
 
 
-
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    
-    //Route::get('testmongo','PublicacionController@index');
+    Route::post('login', 'AuthController@login');
+    Route::post('signup', 'AuthController@signup');
+    Route::get('testmongo','PublicacionController@index');
+
   
     Route::group([
       'middleware' => 'auth'
     ], function() {
+
         Route::get('user', 'AuthController@user');
 
         Route::resource('equipo','EquipoController'); 
@@ -42,6 +44,7 @@ Route::group([
 
         Route::get('noticias-equipo/{equipo}','EquipoController@noticiasPorEquipo');
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
+
         // rutas para el usuario general
 
         Route::post('follow','FollowController@store');
@@ -58,6 +61,10 @@ Route::group([
 
         //graficos
         Route::get('grafico-noticias-equipo','Graficosyreporte@noticiasEquipo');
+
+        Route::get('prueba','EquipoController@cont');
+
+
     });
 });
 

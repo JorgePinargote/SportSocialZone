@@ -113,14 +113,10 @@ class EquipoController extends Controller
 
     }
 
-
-
-
-
-
-
-
-
+    public function cont(){
+        $user =Auth::user();
+        return view('entrenador',compact('user'));
+    }
 
 
 }
