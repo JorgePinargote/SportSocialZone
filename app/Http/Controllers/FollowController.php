@@ -46,7 +46,7 @@ class FollowController extends Controller
         $follow->save();
         
         return response()->json([
-            'mensaje' => 'sigueiendo a ' . $equipo->name_Equipo,
+            'mensaje' => 'siguiendo a ' . $equipo->name_Equipo,
             'followid'=> $follow->getKey(),
         ], 200);
 
@@ -81,12 +81,5 @@ class FollowController extends Controller
         ], 200);
 
     }
-
-
-    
-
-
-
-
 
 }
