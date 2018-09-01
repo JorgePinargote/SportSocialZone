@@ -8,7 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Finger%20Paint" rel='stylesheet'/>
-        <link href="/css/style.css" rel="stylesheet"/>
+        <link href='{{ asset('css/style.css') }}' rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet"/>
     </head>
     <body>
@@ -21,7 +21,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img id="logo" alt="no cargó" src="/image/zs.jpg"/>
+                        <img id="logo" alt="no cargó" src="{{ asset('image/zs.jpg') }}"/>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse " id="myNavbar">

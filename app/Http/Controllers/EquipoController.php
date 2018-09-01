@@ -42,8 +42,7 @@ class EquipoController extends Controller
         return response()->json([
             'mensaje' => 'equipo creado correctamente'
         ], 200); // responder de esta manera en las demas respuestas que sean mensajes. 
-
-        return $message;     
+   
     }
 
 
@@ -115,7 +114,8 @@ class EquipoController extends Controller
 
     public function cont(){
         $user =Auth::user();
-        return view('entrenador',compact('user'));
+        $equipos=$user->equipos;
+        return view('entrenador',compact('equipos'));
     }
 
 

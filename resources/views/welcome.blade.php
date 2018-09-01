@@ -85,7 +85,7 @@
                             $.get('grafico-userstoday',function(data){
                                 var usuarios ='';
                                 $.each(data,function(){
-                                    usuarios=data.entrenadores+'/'+data.generales +'/'+ data.totales +'<br>';
+                                    usuarios='entrenadores:'+data.entrenadores+' Generales:'+data.generales +' Totales:'+ data.totales +'<br>';
                                 });
                                 $('#usuarios').html(usuarios);
                                 $('#Usuarios-button').hide();
