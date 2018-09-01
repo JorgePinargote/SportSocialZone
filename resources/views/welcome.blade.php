@@ -85,17 +85,13 @@
                             $('#usuarios').html('cargando...');
                             $.get('grafico-userstoday',function(data){
                                 var usuarios ='';
-                                var w = 300,              //width
-                                h = 300,                 //height
-                                r = 100,
-                                color = d3.scale.category20c();     //builtin range of colors
                                 var vis = d3.select("body")
-                                        .append("svg:svg")              //create the SVG element inside the <body>
-                                        .data([data])                   //associate our data with the document
-                                            .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
-                                            .attr("height", h)
-                                        .append("svg:g")                //make a group to hold our pie chart
-                                            .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+                                    .append("svg:svg")              //create the SVG element inside the <body>
+                                    .data([data])                   //associate our data with the document
+                                        .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+                                        .attr("height", h)
+                                    .append("svg:g")                //make a group to hold our pie chart
+                                        .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
 
                                 var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
                                     .outerRadius(r);
@@ -123,12 +119,11 @@
                                         .attr("text-anchor", "middle")                          //center the text on it's origin
                                         .text(function(d, i) { return data[i].label; });        //get the label from our original data array
                                     
-                                                            });
-                                                            $('#usuarios').html(usuarios);
-                                                            $('#Usuarios-button').hide();
-                                                        });
-                                                    });
-                                                });
+                                $('#usuarios').html(usuarios);
+                                $('#Usuarios-button').hide();
+                            });
+                        });
+                    });
                 </script>
             </div>
         </div>
