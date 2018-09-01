@@ -28,7 +28,7 @@ class Graficosyreporte extends Controller
             ];
         }
 
-        return $datos;
+        return response()->json($datos);
 
     }
 
@@ -45,7 +45,7 @@ class Graficosyreporte extends Controller
             'totales' => $users->count(),
         ];
 
-        return $datos;
+        return response()->json($datos);
     }
 
 
@@ -61,7 +61,7 @@ class Graficosyreporte extends Controller
              ];
          }
 
-         return $datos;
+         return response()->json($datos);
 
     }
 
