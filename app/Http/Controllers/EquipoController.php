@@ -16,7 +16,11 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        return Equipo::all();
+        //return Equipo::all();
+
+        $user =Auth::user();
+        $equipos=$user->equipos;
+        return view('entrenadores.entrenador',compact('equipos'));
     }
 
 
@@ -28,20 +32,20 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-
         $input = request()->all();
 
         // 
+
         $request->validate([
             'nombre' => 'required|string',
             'deporte' => 'required|string',
         ]);
 
+
+
         $equipo = Equipo::create(['name_Equipo' => $input['nombre'] , 'idUsers' => Auth::id(), 'name_deporte' => $input['deporte']]);
 
-        return response()->json([
-            'mensaje' => 'equipo creado correctamente'
-        ], 200); // responder de esta manera en las demas respuestas que sean mensajes. 
+        return redirect()->action('EquipoController@index');
    
     }
 
@@ -54,8 +58,23 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Equipo $equipo)
-    {
+    {   
         return $equipo;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return View('entrenadores.nuevo_equipo');
+    }
+
+    public function edit(Equipo $equipo)
+    {
+        return View('entrenadores.editar_equipo',compact('equipo'));
     }
 
 
@@ -71,17 +90,17 @@ class EquipoController extends Controller
         $input = request()->all();
    // 
         $request->validate([
-            'nombre' => 'required|string',
-            'deporte' => 'required|string',
+            'name_Equipo' => 'required|string',
+            'name_deporte' => 'required|string',
         ]);
 
 
         //aqui se podria validar que el que actualice sea el mimso usuario que creo el recurso anteriormente, se puede ver por el id. 
-        $equipo->fill(['name_Equipo' => $input['nombre'] , 'idUsers' => $equipo->idUsers, 'name_deporte' => $input['deporte']])->save();
+        $equipo->fill(['name_Equipo' => $input['name_Equipo'] , 'idUsers' => $equipo->idUsers, 'name_deporte' => $input['name_deporte']])->save();
+        
+        return redirect()->action('EquipoController@index');
 
-
-        $message = 'Equipo actualizado con exito';
-        return $message;     
+          
     }
 
 
@@ -103,8 +122,11 @@ class EquipoController extends Controller
 
 
     public function equiposPorUsuario(){
-        $user = Auth::user(); 
-        return $user->equipos;
+        $user = Auth::user();
+        $equipos=$user->equipos;
+        return view('entrenadores.entrenador',compact('equipos')); 
+
+        //return $user->equipos;
     }
 
     public function noticiasPorEquipo(Equipo $equipo){
