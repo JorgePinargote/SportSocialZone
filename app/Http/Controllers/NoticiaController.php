@@ -25,13 +25,14 @@ class NoticiaController extends Controller
 
     public function crear(Equipo $equipo)
     {
+        return $equipo;
         $equip = $equipo;
         return View('noticias.nueva_noticia',compact('equip'));
     }
 
     public function actualizar(Request $request,Equipo $equipo)
     {
-        return $request;
+        return $Request;
         $input = request()->all();
         $request->validate([
             'titulo' => 'required|string',
