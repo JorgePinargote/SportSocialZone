@@ -6,25 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="https://d3js.org/d3.v4.min.js"> </script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-        //<script src="https://d3js.org/d3.v5.min.js"></script>
         <title>Laravel</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"/>
         <!-- Styles -->
     <style>
-        #chart-area svg {
-            margin:auto;
-            display:inherit;
-        }
-        text {
+        .arc text {
             font: 10px sans-serif;
+            text-anchor:middle;
         }
-        form {
-            position: absolute;
-            right: 10px;
-            top: 10px;
+        .arc path{
+            stroke: teal;
+            stroke-width: 3.5px;
         }
+
     </style>
     </head>
     <body>
@@ -42,49 +37,106 @@
             <div class="content">
                 <a href="#" id="Usuarios-button">Cargar Usuarios</a>
                 <div id="usuarios"></div>
+                <svg width = "748" height = "530"></svg>
                 <script>
                     $(function(){
                         $('#Usuarios-button').on('click',function(e){
                             e.preventDefault();
                             $('#usuarios').html('cargando...');
                             $.get('grafico-userstoday',function(data){
-                                var data = !{JSON.stringify(data)};
-
-                                var height = 800,
-                                    width= 500,
+                                var data2 = new Array(2);
+                                data2[0] = data.entrenadores;
+                                data2[1] = data.generales;
+                                console.log(data);
+                                console.log(data2);
+                                var svg = d3.select("svg"),
+                                    width = svg.attr("width"),
+                                    height = svg.attr("height"),
                                     radius = Math.min(width, height)/2;
 
-                                var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-                                var arc = d3.arc()
-                                        .outerRadius(radius - 10)
-                                        .innerRadius(0);
-                                var labelArc = d3.arc()
-                                        .outerRadius(radius - 40)
-                                        .innerRadius(radius - 40);
-
-                                var pie = d3.pie()
-                                        .sort(null)
-                                        .value( function(d){
-                                            return d.entrenadores;
-                                        });
-                                var svg = d3.select("body").append("svg")
-                                            .attr("width", width)
-                                            .attr("height", height)
-                                        .append("g")
-                                            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");    
-                                var g = svg.selectAll(".arc")
-                                            .data(pie(data))
-                                        .enter().append("g")
-                                            .attr("class", "arc");
-                                g.append("path")
-                                    .attr("d", arc)
-                                    .style("fill", function(d) { return color(d.data.generales); });
-                                g.append("text")
-                                    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-                                    .attr("dy", ".35em")
-                                    .text(function(d) { return d.data.generales; });
-                                $('#usuarios').html(data);
+                                var g = svg.append("g")
+                                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                                var color = d3.scaleOrdinal(['green', 'brown']);
+                                var pie = d3.pie().value(function(d) { 
+                                    return d; 
+                                });
+                                var path = d3.arc()
+                                    .outerRadius(radius - 10).innerRadius(20);
+                                var label = d3.arc()
+                                    .outerRadius(radius).innerRadius(radius - 80);
+                                var arc = g.selectAll(".arc")
+                                    .data(pie(data2))
+                                    .enter()
+                                    .append("g")
+                                    .attr("class", "arc");
+                                arc.append("path")
+                                    .attr("d", path)
+                                    .attr("fill", function(d) { return color(d.data2); });
+                                console.log(arc);
+                                arc.append("text").attr("transform", function(d) { 
+                                    return "translate(" + label.centroid(d) + ")"; 
+                                })
+                                .text(function(d) { return d.data2; });
+                                svg.append("g")
+                                    .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
+                                    .append("text").text("Usuarios Registrados")
+                                    .attr("class", "title")
+                                $('#usuarios').html(svg);
                                 $('#Usuarios-button').hide();
+                                
+                            });
+                        });
+                    });
+                </script>
+                <script>
+                    <a href="#" id="Equipos-button">Cargar Equipos</a>
+                    <div id="equipos"></div>
+                    <svg width = "748" height = "530"></svg>
+                    $(function(){
+                        $('#Equipos-button').on('click',function(e){
+                            e.preventDefault();
+                            $('#equipos').html('cargando...');
+                            $.get('grafico-userstoday',function(data){
+                                var data2 = new Array(2);
+                                data2[0] = data.entrenadores;
+                                data2[1] = data.generales;
+                                console.log(data);
+                                console.log(data2);
+                                var svg = d3.select("svg"),
+                                    width = svg.attr("width"),
+                                    height = svg.attr("height"),
+                                    radius = Math.min(width, height)/2;
+
+                                var g = svg.append("g")
+                                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                                var color = d3.scaleOrdinal(['green', 'brown']);
+                                var pie = d3.pie().value(function(d) { 
+                                    return d; 
+                                });
+                                var path = d3.arc()
+                                    .outerRadius(radius - 10).innerRadius(20);
+                                var label = d3.arc()
+                                    .outerRadius(radius).innerRadius(radius - 80);
+                                var arc = g.selectAll(".arc")
+                                    .data(pie(data2))
+                                    .enter()
+                                    .append("g")
+                                    .attr("class", "arc");
+                                arc.append("path")
+                                    .attr("d", path)
+                                    .attr("fill", function(d) { return color(d.data2); });
+                                console.log(arc);
+                                arc.append("text").attr("transform", function(d) { 
+                                    return "translate(" + label.centroid(d) + ")"; 
+                                })
+                                .text(function(d) { return d.data2; });
+                                svg.append("g")
+                                    .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
+                                    .append("text").text("Equipos por Deporte")
+                                    .attr("class", "title")
+                                $('#equipos').html(svg);
+                                $('#Equipos-button').hide();
+                                
                             });
                         });
                     });
