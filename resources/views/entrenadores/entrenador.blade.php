@@ -4,7 +4,7 @@
 <div>
     <h1 id ="Titulo">Equipos</h1>
 </div>
-<a id="cr" class="btn btn-primary" href="#">CrearEquipo</a>
+<a id="cr" class="btn btn-primary" href="equipo/create">CrearEquipo</a>
 <div>
     @foreach($equipos as $equipo)
     <div class = "row deportes">
@@ -21,9 +21,13 @@
             </div>
         </div>
         <div class = "col-lg-5 botones">
-            <button class="btn btn-primary">Editar Equipo</button>
-            <button class="btn btn-primary">Eliminar Equipo</button>
-            <button class="btn btn-primary">Ver noticias</button>
+            <a class="btn btn-primary" href="equipo/{{ $equipo->id_Equipo }}/edit">
+                Editar Equipo
+            </a>
+            <a class="btn btn-primary">Eliminar Equipo</a>
+            <a class="btn btn-primary" href="noticias-equipo/{{ $equipo->id_Equipo }}">
+                Ver noticias
+            </a>
         </div>
     </div>
     @endforeach
