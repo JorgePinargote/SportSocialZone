@@ -37,7 +37,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div id="usuarios">
+                        <div id="usuarios"></div>
                             <svg width = "400" height = "400"></svg>
                             <script>
                                 $(function(){
@@ -85,10 +85,9 @@
                                         });
                                     });
                             </script>
-                        </div>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div id="equipos">
+                        <div id="equipos"></div>
                             <svg width = "400" height = "400"></svg>
                             <script>
                                 $(function(){
@@ -136,7 +135,6 @@
                                         });                                
                                     });
                             </script>
-                        </div>
                     </div>
                 </div>    
             </div>
