@@ -31,7 +31,7 @@ class NoticiaController extends Controller
 
     public function actualizar(Request $request,Equipo $equipo)
     {
-        return $equipo;
+        return $request;
         $input = request()->all();
         $request->validate([
             'titulo' => 'required|string',
