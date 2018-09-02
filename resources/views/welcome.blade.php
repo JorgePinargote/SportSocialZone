@@ -35,14 +35,10 @@
             </div>
             @endif
             <div class="content">
-                <a href="#" id="Usuarios-button">Cargar Usuarios</a>
                 <div id="usuarios"></div>
                 <svg width = "748" height = "530"></svg>
                 <script>
                     $(function(){
-                        $('#Usuarios-button').on('click',function(e){
-                            e.preventDefault();
-                            $('#usuarios').html('cargando...');
                             $.get('grafico-userstoday',function(data){
                                 var data2 = new Array(2);
                                 data2[0] = data.entrenadores;
@@ -86,17 +82,12 @@
                                 
                             });
                         });
-                    });
 
                 </script>
-                <a href="#" id="Equipos-button">Cargar Equipos</a>
                 <div id="equipos"></div>
                 <svg width = "748" height = "530"></svg>
                 <script>
                     $(function(){
-                        $('#Equipos-button').on('click',function(e){
-                            e.preventDefault();
-                            $('#equipos').html('cargando...');
                             $.get('grafico-equipos-deporte',function(data){
                                 var datax = new Array();
                                 var count = Object.keys(data).length;
@@ -137,14 +128,8 @@
                                    })
                                   .attr("y", function(d,i) { return config.height - d })
                                   .attr("height", function(d,i) { return d });
-                                });
-                                
-                                $('#equipos').html(svg);
-                                $('#Equipos-button').hide();
-                                
-                            });
+                            });                                
                         });
-                    });
                 </script>
             </div>
         </div>
