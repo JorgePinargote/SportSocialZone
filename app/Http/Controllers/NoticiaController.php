@@ -34,7 +34,6 @@ class NoticiaController extends Controller
         return $request;
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
