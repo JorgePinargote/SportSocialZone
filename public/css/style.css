@@ -43,7 +43,25 @@ form > h1 {
 	font-size: 23px;
 }
 
+form input.sub {
+	width: 220px;
+	height: 35px;
+	padding: 0px 10px;
+	margin: 10px 30px;
+	color: #6d6d6d;
+	text-align: center;
+}
+
 form input {
+	width: 220px;
+	height: 35px;
+	padding: 0px 10px;
+	margin: 10px 30px;
+	color: #6d6d6d;
+	text-align: center;
+}
+
+form a {
 	width: 220px;
 	height: 35px;
 	padding: 0px 10px;
@@ -480,8 +498,9 @@ div.parrafo > h4 {
 	font-weight: bold;
 }
 
-.botones button {
+.botones * {
 	margin: 5px;
+	display: inline-block;
 }
 
 #cr {

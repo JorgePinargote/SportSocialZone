@@ -44,6 +44,8 @@ Route::group([
 
         Route::get('noticias-equipo/{equipo}','EquipoController@noticiasPorEquipo');
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
+        Route::get('noticia/crear/{equipo}','NoticiaController@crear')->name('noticia.crear');
+        Route::post('noticia/actualizar/{equipo}','NoticiaController@actualizar')->name('noticia.actualizar');
 
         // rutas para el usuario general
 
