@@ -10,17 +10,17 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"/>
         <!-- Styles -->
-    <style>
-        .arc text {
-            font: 10px sans-serif;
-            text-anchor:middle;
-        }
-        .arc path{
-            stroke: teal;
-            stroke-width: 3.5px;
-        }
-
-    </style>
+        <style>
+                .arc text {
+                    font: 10px sans-serif;
+                    text-anchor:middle;
+                }
+                .arc path{
+                    stroke: teal;
+                    stroke-width: 3.5px;
+                }
+        
+            </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -38,52 +38,52 @@
                 <div id="usuarios"></div>
                 <svg width = "748" height = "530"></svg>
                 <script>
-                    $(function(){
-                            $.get('grafico-userstoday',function(data){
-                                var data2 = new Array(2);
-                                data2[0] = data.entrenadores;
-                                data2[1] = data.generales;
-                                console.log(data);
-                                console.log(data2);
-                                var svg = d3.select("svg"),
-                                    width = svg.attr("width"),
-                                    height = svg.attr("height"),
-                                    radius = Math.min(width, height)/2;
-
-                                var g = svg.append("g")
-                                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-                                var color = d3.scaleOrdinal(['green', 'brown']);
-                                var pie = d3.pie().value(function(d) { 
-                                    return d; 
-                                });
-                                var path = d3.arc()
-                                    .outerRadius(radius - 10).innerRadius(20);
-                                var label = d3.arc()
-                                    .outerRadius(radius).innerRadius(radius - 80);
-                                var arc = g.selectAll(".arc")
-                                    .data(pie(data2))
-                                    .enter()
-                                    .append("g")
-                                    .attr("class", "arc");
-                                arc.append("path")
-                                    .attr("d", path)
-                                    .attr("fill", function(d) { return color(d.data2); });
-                                console.log(arc);
-                                arc.append("text").attr("transform", function(d) { 
-                                    return "translate(" + label.centroid(d) + ")"; 
-                                })
-                                .text(function(d) { return d.data2; });
-                                svg.append("g")
-                                    .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
-                                    .append("text").text("Usuarios Registrados")
-                                    .attr("class", "title")
-                                $('#usuarios').html(svg);
-                                $('#Usuarios-button').hide();
-                                
-                            });
-                        });
-
-                </script>
+                                    $(function(){
+                                            $.get('grafico-userstoday',function(data){
+                                                var data2 = new Array(2);
+                                                data2[0] = data.entrenadores;
+                                                data2[1] = data.generales;
+                                                console.log(data);
+                                                console.log(data2);
+                                                var svg = d3.select("svg"),
+                                                    width = svg.attr("width"),
+                                                    height = svg.attr("height"),
+                                                    radius = Math.min(width, height)/2;
+                
+                                                var g = svg.append("g")
+                                                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                                                var color = d3.scaleOrdinal(['green', 'brown']);
+                                                var pie = d3.pie().value(function(d) { 
+                                                    return d; 
+                                                });
+                                                var path = d3.arc()
+                                                    .outerRadius(radius - 10).innerRadius(20);
+                                                var label = d3.arc()
+                                                    .outerRadius(radius).innerRadius(radius - 80);
+                                                var arc = g.selectAll(".arc")
+                                                    .data(pie(data2))
+                                                    .enter()
+                                                    .append("g")
+                                                    .attr("class", "arc");
+                                                arc.append("path")
+                                                    .attr("d", path)
+                                                    .attr("fill", function(d) { return color(d.data2); });
+                                                console.log(arc);
+                                                arc.append("text").attr("transform", function(d) { 
+                                                    return "translate(" + label.centroid(d) + ")"; 
+                                                })
+                                                .text(function(d) { return d.data2; });
+                                                svg.append("g")
+                                                    .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
+                                                    .append("text").text("Usuarios Registrados")
+                                                    .attr("class", "title")
+                                                $('#usuarios').html(svg);
+                                                $('#Usuarios-button').hide();
+                                                
+                                            });
+                                        });
+                
+                                </script>
                 <div id="equipos"></div>
                 <svg width = "748" height = "530"></svg>
                 <script>
@@ -111,16 +111,16 @@
                                     .attr("height", height+ margin.top + margin.bottom)
                                     .append("g")
                                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-                                x.domain(d3.extent(datosx, function(d){
+                                x.domain(d3.extent(datax, function(d){
                                     return d;
                                 }))  
-                                y.domain([0, d3.max(datosx, function(d){
+                                y.domain([0, d3.max(datax, function(d){
                                     return d;
                                 })])  
                                 var config = { columnWidth: 45, columnGap: 5, margin: 10, height: 235 };
                                 d3.select("svg")
                                   .selectAll("rect")
-                                  .data(datosx)
+                                  .data(datax)
                                 .enter().append("rect")
                                   .attr("width", config.columnWidth)
                                   .attr("x", function(d,i) {
@@ -135,4 +135,3 @@
         </div>
     </body>
 </html>
-
