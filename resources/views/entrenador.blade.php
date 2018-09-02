@@ -4,8 +4,8 @@
 <div>
     <h1 id ="Titulo">Equipos</h1>
 </div>
-<a id="cr" class="btn btn-primary" href="/nuevo_equipo.html">CrearEquipo</a>
-<div ng-repeat="equipo in equipos">
+<a id="cr" class="btn btn-primary" href="#">CrearEquipo</a>
+<div>
     @foreach($equipos as $equipo)
     <div class = "row deportes">
         <div class="col-lg-7">

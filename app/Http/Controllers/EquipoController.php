@@ -103,8 +103,11 @@ class EquipoController extends Controller
 
 
     public function equiposPorUsuario(){
-        $user = Auth::user(); 
-        return $user->equipos;
+        $user = Auth::user();
+        $equipos=$user->equipos;
+        return view('entrenador',compact('equipos')); 
+
+        //return $user->equipos;
     }
 
     public function noticiasPorEquipo(Equipo $equipo){
