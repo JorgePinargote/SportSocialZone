@@ -87,53 +87,58 @@
                             });
                         });
                     });
+
                 </script>
+                <a href="#" id="Equipos-button">Cargar Equipos</a>
+                <div id="equipos"></div>
+                <svg width = "748" height = "530"></svg>
                 <script>
-                    <a href="#" id="Equipos-button">Cargar Equipos</a>
-                    <div id="equipos"></div>
-                    <svg width = "748" height = "530"></svg>
                     $(function(){
                         $('#Equipos-button').on('click',function(e){
                             e.preventDefault();
                             $('#equipos').html('cargando...');
-                            $.get('grafico-userstoday',function(data){
-                                var data2 = new Array(2);
-                                data2[0] = data.entrenadores;
-                                data2[1] = data.generales;
+                            $.get('grafico-equipos-deporte',function(data){
+                                var datax = new Array();
+                                var count = Object.keys(data).length;
+                                var i;
+                                for(i=0; i<count; i++){
+                                    datax[i] = data[i].cantequipo;
+                                }
                                 console.log(data);
-                                console.log(data2);
-                                var svg = d3.select("svg"),
-                                    width = svg.attr("width"),
-                                    height = svg.attr("height"),
-                                    radius = Math.min(width, height)/2;
-
-                                var g = svg.append("g")
-                                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-                                var color = d3.scaleOrdinal(['green', 'brown']);
-                                var pie = d3.pie().value(function(d) { 
-                                    return d; 
-                                });
-                                var path = d3.arc()
-                                    .outerRadius(radius - 10).innerRadius(20);
-                                var label = d3.arc()
-                                    .outerRadius(radius).innerRadius(radius - 80);
-                                var arc = g.selectAll(".arc")
-                                    .data(pie(data2))
-                                    .enter()
+                                console.log(datax);
+                                var margin = {top: 20, right: 20 , bottom: 100, left:60},
+                                    width = 800 - margin.left - margin.right,
+                                    height = 500 - margin.top - margin.bottom,
+                                    x = d3.scaleBand().rangeRound([0, width]).padding(0.5),
+                                    y = d3.scaleLinear().rangeRound([height,0]);
+                                var xAxis = d3.axisBottom(x)
+                                var yAxis = d3.axisLeft(y)
+                                    .ticks(5);
+                                var svg = d3.select("#barGraph")
+                                    .append("svg")
+                                    .attr("width", width + margin.left + margin.right)
+                                    .attr("height", height+ margin.top + margin.bottom)
                                     .append("g")
-                                    .attr("class", "arc");
-                                arc.append("path")
-                                    .attr("d", path)
-                                    .attr("fill", function(d) { return color(d.data2); });
-                                console.log(arc);
-                                arc.append("text").attr("transform", function(d) { 
-                                    return "translate(" + label.centroid(d) + ")"; 
-                                })
-                                .text(function(d) { return d.data2; });
-                                svg.append("g")
-                                    .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
-                                    .append("text").text("Equipos por Deporte")
-                                    .attr("class", "title")
+                                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                                x.domain(d3.extent(datosx, function(d){
+                                    return d;
+                                }))  
+                                y.domain([0, d3.max(datosx, function(d){
+                                    return d;
+                                })])  
+                                var config = { columnWidth: 45, columnGap: 5, margin: 10, height: 235 };
+                                d3.select("svg")
+                                  .selectAll("rect")
+                                  .data(datosx)
+                                .enter().append("rect")
+                                  .attr("width", config.columnWidth)
+                                  .attr("x", function(d,i) {
+                                     return config.margin + i * (config.columnWidth + config.columnGap)
+                                   })
+                                  .attr("y", function(d,i) { return config.height - d })
+                                  .attr("height", function(d,i) { return d });
+                                });
+                                
                                 $('#equipos').html(svg);
                                 $('#Equipos-button').hide();
                                 
