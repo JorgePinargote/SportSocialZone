@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Noticia;
 use App\Publicacion;
 use App\User;
+use App\Equipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,18 @@ class NoticiaController extends Controller
         return Noticia::all();
 
     }
+
+    public function crear(Equipo $equipo)
+    {
+        $equip = $equipo;
+        return View('noticias.nueva_noticia',compact('equip'));
+    }
+
+    public function actualizar(Request $request,Equipo $equipo)
+    {
+        return $request;
+    }
+
 
     /**
      * Store a newly created resource in storage.
