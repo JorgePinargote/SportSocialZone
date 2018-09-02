@@ -25,7 +25,6 @@ class NoticiaController extends Controller
 
     public function crear(Equipo $equipo)
     {
-        return $equipo;
         $equip = $equipo;
         return View('noticias.nueva_noticia',compact('equip'));
     }
