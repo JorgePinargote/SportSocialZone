@@ -93,7 +93,7 @@
                                 var count = Object.keys(data).length;
                                 var i;
                                 for(i=0; i<count; i++){
-                                    datax[i] = data[i].cantequipo;
+                                    datax[i] = data[i].equipos;
                                 }
                                 console.log(data);
                                 console.log(datax);

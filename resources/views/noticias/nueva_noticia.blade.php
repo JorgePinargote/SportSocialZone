@@ -22,7 +22,7 @@
         {!! Form::label('noticia','Noticia',['class'=>
         'form-control-plaintext col-sm-3 col-form-label'])!!}
         <div class="col-sm-9">
-            {!! Form::text('deporte',null,['placeholder'=>
+            {!! Form::text('texto',null,['placeholder'=>
             'Noticia','class' =>
             'form-control-plaintext','required'=>
             ''] )!!}

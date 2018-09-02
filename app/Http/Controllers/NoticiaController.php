@@ -31,7 +31,15 @@ class NoticiaController extends Controller
 
     public function actualizar(Request $request,Equipo $equipo)
     {
-        return $request;
+        return $equipo;
+        $input = request()->all();
+        $request->validate([
+            'titulo' => 'required|string',
+            'texto' => 'required|string',
+        ]);
+
+        $noticia = Noticia::create(['titulo' => $input['titulo'] , 'idEquipo' =>  $equipo->id_Equipo, 'texto' => $input['texto'], 'direccionImagen' => 'defaultsportimg.jpg']);
+        return $noticia;
     }
 
     /**
