@@ -115,9 +115,8 @@ class EquipoController extends Controller
     {
         $id = $equipo->name_Equipo;
         $equipo->delete();
+        return redirect()->action('EquipoController@index');
 
-        $message = "Se ha eliminado ". $id;
-        return $message;      
     }
 
 
@@ -130,7 +129,9 @@ class EquipoController extends Controller
     }
 
     public function noticiasPorEquipo(Equipo $equipo){
-        return $equipo->noticias;
+        $noti=$equipo->noticias;
+        $id= $equipo->id_Equipo;
+        return view('noticias.noticia',compact('noti','id'));
 
     }
 

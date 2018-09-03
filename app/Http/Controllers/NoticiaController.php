@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Noticia;
 use App\Publicacion;
 use App\User;
+use App\Equipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,46 @@ class NoticiaController extends Controller
         //
         return Noticia::all();
 
+    }
+
+    public function crear(Equipo $equipo)
+    {
+        $equip = $equipo;
+        return View('noticias.nueva_noticia',compact('equip'));
+    }
+
+    public function actualizar(Request $request)
+    {
+        $input = request()->all();
+        $request->validate([
+            'titulo' => 'required|string',
+            'texto' => 'required|string',
+            'idEquipo'=> 'required|string',
+        ]);
+        $noticia = Noticia::create(['titulo' => $input['titulo'] ,'idEquipo' => $input['idEquipo'], 'texto' => $input['texto'], 'direccionImagen' => 'defaultsportimg.jpg']);
+        $equipo = $noticia->equipo;
+        $user = Auth::user(); 
+
+
+        // CREACION DE PUBLICACION
+        $publicacion = new Publicacion;
+
+        $publicacion->user = $user->name;
+        $publicacion->userid = $user->id;
+        $publicacion->avatar = $user->avatar;
+        $publicacion->equipo = $equipo->name_Equipo;
+        $publicacion->idequipo = $equipo->id_Equipo;
+        $publicacion->deporte = $equipo->name_deporte;
+        $publicacion->titulo = $noticia->titulo;
+        $publicacion->texto = $noticia->texto;
+        $publicacion->imgnoticia = $noticia->direccionImagen;
+        $publicacion->idnoticia = $noticia->id_Noticia;
+
+        $publicacion->save();
+
+        $noti=$equipo->noticias;
+        $id= $equipo->id_Equipo;
+        return view('noticias.noticia',compact('noti','id'));
     }
 
     /**
@@ -76,6 +117,13 @@ class NoticiaController extends Controller
         return $noticium;
     }
 
+
+    public function edit(Noticia $noticium)
+    {
+        return View('noticias.editar_noticia',compact('noticium'));
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -86,24 +134,25 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, Noticia $noticium)
     {
-             $input = request()->all();
-
-             $request->validate([
-                'titulo' => 'required|string',
-                'texto' => 'required|string',
-             ]);
+        $input = request()->all();
+        $request->validate([
+            'titulo' => 'required|string',
+            'texto' => 'required|string',
+        ]);
+        $id =$noticium->idEquipo;
+        $equipo = Equipo::find($id);
                   
-             //aqui se podria validar que el que actualice sea el mimso usuario que creo el recurso anteriormente, se puede ver por el id. 
-             $noticium->fill(['titulo' => $input['titulo'] , 'texto' => $input['texto']])->save();
+         //aqui se podria validar que el que actualice sea el mimso usuario que creo el recurso anteriormente, se puede ver por el id. 
+         $noticium->fill(['titulo' => $input['titulo'] , 'texto' => $input['texto']])->save();
              
-             $publicacion = Publicacion::where('idnoticia', '=', $noticium->id_Noticia)->get()->first();
-             $publicacion->titulo = $input['titulo'];
-             $publicacion->texto = $input['texto'];
-             $publicacion->save();
+        $publicacion = Publicacion::where('idnoticia', '=', $noticium->id_Noticia)->get()->first();
+        $publicacion->titulo = $input['titulo'];
+        $publicacion->texto = $input['texto'];
+        $publicacion->save();
 
-             
-             $message = 'noticia actualizada con exito';
-             return $message;
+        $noti=$equipo->noticias;
+        $id= $equipo->id_Equipo;
+        return view('noticias.noticia',compact('noti','id'));
     }
 
     /**
@@ -114,15 +163,20 @@ class NoticiaController extends Controller
      */
     public function destroy(Noticia $noticium)
     {
+        $id =$noticium->idEquipo;
         $titulo = $noticium->titulo;
 
-        $publicacion = Publicacion::where('idnoticia', '=', $noticium->id_Noticia)->get()->first();
+        $publicacion = Publicacion::where('idnoticia', '=', $noticium->id_Noticia)->get()->first(); 
+        $equipo = Equipo::find($id);
+
         $publicacion->delete();
 
         $noticium->delete();
 
-        $message = "Se ha eliminado ". $titulo;
-        return $message;      
+
+        $noti=$equipo->noticias;
+        $id= $equipo->id_Equipo;
+        return view('noticias.noticia',compact('noti','id'));
      
 
     }
