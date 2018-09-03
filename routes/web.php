@@ -57,7 +57,8 @@ Route::group([
         //Comentarios 
         Route::post('comment','CommentController@store');
         Route::delete('comment/{comment}','CommentController@destroy');
-        Route::get('comment/{idpublicacion}','CommentController@commentByPublicacion');
+
+        Route::get('comment/{idpublicacion}','CommentController@commentByPublicacion'); //obtiene comentarios por id 
 
         //graficos
         Route::get('grafico-noticias-equipo','Graficosyreporte@noticiasEquipo');

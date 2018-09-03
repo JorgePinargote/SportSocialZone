@@ -7,6 +7,8 @@ use App\Publicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use App\Events\NewComment;
+
 class CommentController extends Controller
 {
     /**
@@ -42,10 +44,12 @@ class CommentController extends Controller
                                     'avatar' => Auth::user()->avatar,
                                     'comentario' => $input['texto']]);
 
-            $publicacion->comentarios()->save($comment);                        
+            $publicacion->comentarios()->save($comment);   
+            
+            event(new NewComment($comment));
             
             return response()->json([
-                'Message' => 'Comentario agregado'
+                'comentario' => $comment
             ], 200);
         }
 
@@ -76,7 +80,9 @@ class CommentController extends Controller
         $publi = Publicacion::find($idpublicacion);
 
         if($publi != null){
-            return $publi->comentarios;
+            return response()->json([
+                $publi->comentarios
+            ]);  
         }
         
         return response()->json([
