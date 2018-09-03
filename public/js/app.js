@@ -13971,7 +13971,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
   key: 'f27cf4df5752386fbbe4',
   cluster: 'mt1',
-  encrypted: true
+  encrypted: false
 });
 
 /***/ }),

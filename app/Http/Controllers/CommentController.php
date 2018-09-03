@@ -46,11 +46,10 @@ class CommentController extends Controller
 
             $publicacion->comentarios()->save($comment);   
             
-            event(new NewComment($comment));
+            //event(new NewComment($comment));
+            broadcast(new NewComment($comment))->toOthers();
             
-            return response()->json([
-                'comentario' => $comment
-            ], 200);
+            return $comment->toJson();
         }
 
         return response()->json([
@@ -80,14 +79,19 @@ class CommentController extends Controller
         $publi = Publicacion::find($idpublicacion);
 
         if($publi != null){
-            return response()->json([
-                $publi->comentarios
-            ]);  
+            return $publi->comentarios;
         }
         
         return response()->json([
             'Message' => 'Publicacion no encontrada'
         ],400);  
+    }
+
+
+
+    public function idnoticia(Comment $comment){
+        $publicacion = $comment->publicacion;
+        return $publicacion->idnoticia;
     }
 
 
