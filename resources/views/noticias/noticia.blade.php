@@ -30,7 +30,7 @@
         </div>
         <div class = "col-lg-6">
             <div class="botones">
-                <a class="btn btn-primary" href="noticia/{{ $noticia->id_Noticia }}/edit">
+                <a class="btn btn-primary" href="/auth/noticia/{{ $noticia->id_Noticia }}/edit">
                     Editar Noticia
                 </a>
                 {!! Form::open(['route'=>

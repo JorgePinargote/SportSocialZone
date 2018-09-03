@@ -33,7 +33,8 @@
         'btn btn-primary'])!!}
         <a class="btn btn-primary" href='{{ url('/auth/equipo') }}'>Volver</a>
     </div>
-    {!!Form::hidden('idEquipo','$id')!!}
+    {!!Form::hidden('idEquipo',$equip->
+    id_Equipo)!!}
     {!! Form::close()!!}
 </div>
 @endsection
