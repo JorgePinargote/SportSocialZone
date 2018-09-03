@@ -23,6 +23,7 @@ Route::get('grafico-userstoday','Graficosyreporte@usersToday');
 Route::get('grafico-equipos-deporte','Graficosyreporte@equiposDeporte');
 Route::post('helpmail','HelpMailController@sendHelpMail');
 
+//Route::get('idnoticia/{comment}','CommentController@idnoticia');
 
 
 Route::group([
@@ -55,6 +56,7 @@ Route::group([
         Route::get('follow/{equipo}','FollowController@isFollowed');
 
         Route::get('publicaciones','PublicacionController@PublicacionesByFollow');
+        Route::get('publicacion/{publicacion}','PublicacionController@show');
 
         //Comentarios 
         Route::post('comment','CommentController@store');

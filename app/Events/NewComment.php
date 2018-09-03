@@ -11,6 +11,9 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
+use App\Comment;
+use App\Publicacion;
+
 class NewComment implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -35,18 +38,13 @@ class NewComment implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('posts.'.$this->comment->publicacion->idnoticia);
+        $publicacion = $this->comment->publicacion;
+        return new Channel('publicacion.'. $publicacion->idnoticia);
     }
 
-    // public function broadcastWith(){
-    //     return [
-    //         'userid' => 
-    //         'avatar' => $this->comment->avatar,
-    //         'username' => $this->comment->username,
-    //         'comment' => $this->comment->comentario,
-    //         'created_at'=> $this->comment->created_at
-    //     ]
-    // }
+    public function broadcastWith(){
+        return $this->comment->toArray();
+    }
 
     
 }
