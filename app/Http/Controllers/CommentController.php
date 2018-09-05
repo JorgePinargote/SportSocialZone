@@ -7,6 +7,8 @@ use App\Publicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use App\Events\NewComment;
+
 class CommentController extends Controller
 {
     /**
@@ -42,11 +44,12 @@ class CommentController extends Controller
                                     'avatar' => Auth::user()->avatar,
                                     'comentario' => $input['texto']]);
 
-            $publicacion->comentarios()->save($comment);                        
+            $publicacion->comentarios()->save($comment);   
             
-            return response()->json([
-                'Message' => 'Comentario agregado'
-            ], 200);
+            //event(new NewComment($comment));
+            broadcast(new NewComment($comment))->toOthers();
+            
+            return $comment->toJson();
         }
 
         return response()->json([
@@ -82,6 +85,13 @@ class CommentController extends Controller
         return response()->json([
             'Message' => 'Publicacion no encontrada'
         ],400);  
+    }
+
+
+
+    public function idnoticia(Comment $comment){
+        $publicacion = $comment->publicacion;
+        return $publicacion->idnoticia;
     }
 
 

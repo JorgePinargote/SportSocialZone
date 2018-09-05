@@ -28,7 +28,7 @@ class PublicacionController extends Controller
      */
     public function show(Publicacion $publicacion)
     {
-        //
+        return view('Publicacion.comments',compact('publicacion'));
     }
 
     /* Esta funcion obtiene las publicaciones por los equipos seguidos del usuario actual */
@@ -44,8 +44,11 @@ class PublicacionController extends Controller
                 array_push($array["publicaciones"], $publicacion);
             }
         }
+
         return $array;
     }
+
+
 
 
 
