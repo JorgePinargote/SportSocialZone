@@ -28,7 +28,7 @@
     <div id="ad_bt">
         {!!Form::submit('Guardar',['class'=>
         'btn btn-primary'])!!}
-        <a class="btn btn-primary" href='/auth/noticias-equipo/{{ $noticium->id_Noticia }}'>
+        <a class="btn btn-primary" href='/auth/noticias-equipo/{{ $noticium->idEquipo }}'>
             Volver
         </a>
     </div>

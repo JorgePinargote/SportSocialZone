@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'auth/elegir';
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'tipo' => array(
                 'required',
-                'min:8',
+                'min:6',
                 'max:32',
                 'regex:(entrenador|general)'),
             'password' => 'required|string|min:6|confirmed',
@@ -68,11 +68,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        if(strcmp($data['tipo'], 'entrenador')==0){
+            return User::create([
+            'role_id' => '3',
             'name' => $data['name'],
             'email' => $data['email'],
             'tipo' => $data['tipo'],
             'password' => Hash::make($data['password']),
         ]);
+
+        } else{
+            return User::create([
+            'role_id' => '4',
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'tipo' => $data['tipo'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        }
     }
 }
