@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
         <script src="https://d3js.org/d3.v4.min.js"> </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <title>Laravel</title>
@@ -23,6 +24,7 @@
         
                 
                     </style>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -40,7 +42,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <div id="usuarios"></div>
-                        <svg width = "400" height = "400"></svg>
+                        <svg width = "200" height = "200"></svg>
                         <script>
                                                         $(function(){
                                                                 $.get('grafico-userstoday',function(data){
@@ -105,8 +107,8 @@
                                     console.log(data);
                                     console.log(datax);
                                     var margin = {top: 20, right: 20 , bottom: 100, left:60},
-                                        width = 800 - margin.left - margin.right,
-                                        height = 500 - margin.top - margin.bottom,
+                                        width = 400 - margin.left - margin.right,
+                                        height = 200 - margin.top - margin.bottom,
                                         x = d3.scaleBand().rangeRound([0, width]).padding(0.5),
                                         y = d3.scaleLinear().rangeRound([height,0]);
                                     var xAxis = d3.axisBottom(x)
@@ -139,6 +141,7 @@
                             });
                     </script>
                 </div>
+
             </div>
         </div>
     </div>

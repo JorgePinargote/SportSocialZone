@@ -16,6 +16,7 @@ class Equipo extends Model
 
     public function user(){
         return $this->belongsTo('App\User', 'idUsers');
+
     }
 
 
@@ -24,5 +25,6 @@ class Equipo extends Model
         return $this->hasMany('App\Noticia', 'idEquipo');
     }
 
-
 }
+
+

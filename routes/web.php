@@ -69,6 +69,7 @@ Route::group([
 
         Route::get('prueba','EquipoController@cont');
 
+        Route::get('pdf', 'ReportController@generar');
 
     });
 });
