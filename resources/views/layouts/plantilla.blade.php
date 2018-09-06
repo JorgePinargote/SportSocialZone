@@ -27,19 +27,7 @@
                 <div class="collapse navbar-collapse " id="myNavbar">
                     <ul class="nav navbar-nav mr-auto">
                         <li class="active">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="descripcion.html">Descripcion</a>
-                        </li>
-                        <li>
-                            <a href="deportes.html">Deportes</a>
-                        </li>
-                        <li>
-                            <a href="eventos.html">Eventos</a>
-                        </li>
-                        <li>
-                            <a href="quienes_somos.html">¿Quiénes somos?</a>
+                            <a href="/login.html">Home</a>
                         </li>
                     </ul>
                 </div>

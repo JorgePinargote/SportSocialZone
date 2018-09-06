@@ -54,6 +54,7 @@ Route::group([
         Route::delete('follow/{follow}','FollowController@destroy');
 
         Route::get('follow/{equipo}','FollowController@isFollowed');
+        Route::get('elegir','Controller@elegir');
 
         Route::get('publicaciones','PublicacionController@PublicacionesByFollow');
         Route::get('publicacion/{publicacion}','PublicacionController@show');
