@@ -29,6 +29,7 @@ class FollowController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
         //
         $input = request()->all();
 
