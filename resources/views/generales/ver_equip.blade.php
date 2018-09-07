@@ -4,11 +4,11 @@
 <div>
     <h1 id ="Titulo">Publicaciones</h1>
 </div>
-<a id="cr" class="btn btn-primary" href="equipo/create">Ver Equipos</a>
+<a id="cr" class="btn btn-primary" href="#">Volver</a>
 <div>
     @foreach($todos as $equipo)
     <div class = "row deportes">
-        <div class="col-lg-10">
+        <div class="col-lg-8">
             <div class ="datosDeporte">
                 <div>
                     <p class="tit">Entrenador: {{ $equipo->name }}</p>
@@ -22,15 +22,8 @@
             </div>
         </div>
         <div class = "col-lg-2 botones">
-            <a class="btn btn-primary" href='{{ url('/auth/equipo') }}'>seguir</a>
-            {!! Form::open(['route'=>
-            ['follow.guardar'],'method'=>
-            'POST']) !!}
-            {!! Form::submit('Seguir Equipo',[ 'class'=>
-            'btn btn-primary']) !!}
-            {!!Form::hidden('idequipo',$equipo->
-            id_Equipo)!!}
-            {!! Form::close() !!}
+            <button class = 'No seguir'></button>
+            <button class= 'seguir'></button>
         </div>
     </div>
     @endforeach
