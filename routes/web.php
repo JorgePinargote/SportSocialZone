@@ -50,7 +50,7 @@ Route::group([
 
         // rutas para el usuario general
 
-        Route::post('follow','FollowController@store');
+        Route::post('follow','FollowController@store')->name('follow.guardar');
         Route::delete('follow/{follow}','FollowController@destroy');
 
         Route::get('follow/{equipo}','FollowController@isFollowed');
@@ -70,9 +70,13 @@ Route::group([
 
         Route::get('prueba','EquipoController@cont');
 
-        Route::get('pdf', 'ReportController@descargar');
 
         Route::get('pdf2', 'ReportController@descargar');
+
+        Route::get('ver_equipos','EquipoController@todos');
+
+        Route::get('pdf', 'ReportController@generar');
+
 
     });
 });

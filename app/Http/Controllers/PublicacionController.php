@@ -33,21 +33,19 @@ class PublicacionController extends Controller
 
     /* Esta funcion obtiene las publicaciones por los equipos seguidos del usuario actual */
     public function PublicacionesByFollow(){
-        $follows = Follow::where('idusuario','=', (string)(Auth::user()->id))->get();
+
+        $follows = Follow::where('idusuario','=', Auth::user()->id)->get();
         $follows = json_decode($follows);
         $array["publicaciones"] = array();
 
         foreach($follows as $follow){
-            $publicaciones = Publicacion::where('idequipo','=', (int)($follow->equipo))->get();
+            $publicaciones = Publicacion::where('idequipo','=', $follow->equipo)->get();
             foreach($publicaciones as $publicacion){
                 array_push($array["publicaciones"], $publicacion);
             }
         }
+        $publicaciones= $array['publicaciones'];
         return view('generales.usuario',compact('publicaciones'));
     }
-
-
-
-
 
 }

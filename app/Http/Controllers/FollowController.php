@@ -20,6 +20,17 @@ class FollowController extends Controller
         //
     }
 
+    public function seguido($equipo)
+    {
+        $follow = Follow::where('equipo','=',$equipo)->where('idusuario','=', Auth::user()->id)->get()->first();
+        if($follow != null){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.

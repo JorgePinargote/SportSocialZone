@@ -23,6 +23,11 @@ class EquipoController extends Controller
         return view('entrenadores.entrenador',compact('equipos'));
     }
 
+    public function todos(){
+        $todos = Equipo::join('users' ,'users.id','=','equipos.idUsers')->get();
+        return view('generales.ver_equip',compact('todos'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
