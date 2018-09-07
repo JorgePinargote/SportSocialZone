@@ -25,15 +25,20 @@
 		<tr>
 			<th>ID</th>
 			<th>Equipos</th>
+			<th>Deporte</th>
 			<th>Publicaciones</th>
-			<th>Follows</th>
+			<th>Contenido</th>
 		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+		@foreach($publicaciones as $publicacion)
+			
+			<tr>
+				<td>{{$publicacion->idequipo}} </td>
+				<td>{{$publicacion->equipo}} </td>
+				<td>{{$publicacion->deporte}}</td>
+				<td>{{$publicacion->titulo}} </td>
+				<td>{{$publicacion->texto}}</td>
+			</tr>
+		@endforeach
 	</table>
 </body>
 </html>

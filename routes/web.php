@@ -70,7 +70,9 @@ Route::group([
 
         Route::get('prueba','EquipoController@cont');
 
-        Route::get('pdf', 'ReportController@generar');
+        Route::get('pdf', 'ReportController@descargar');
+
+        Route::get('pdf2', 'ReportController@descargar');
 
     });
 });
