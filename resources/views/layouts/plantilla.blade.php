@@ -29,7 +29,7 @@
                 <div class="collapse navbar-collapse " id="myNavbar">
                     <ul class="nav navbar-nav mr-auto">
                         <li class="active">
-                            <a href="/login.html">Home</a>
+                            <a href="{{ url('/auth/elegir') }}">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
