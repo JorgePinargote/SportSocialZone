@@ -23,6 +23,10 @@ class EquipoController extends Controller
         return view('entrenadores.entrenador',compact('equipos'));
     }
 
+    public function graficas(){
+        return view('entrenadores.grafica');
+    }
+
     public function todos(){
         $todos = Equipo::join('users' ,'users.id','=','equipos.idUsers')->get();
         return view('generales.ver_equip',compact('todos'));
