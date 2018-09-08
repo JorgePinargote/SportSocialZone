@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@raiz');
 Route::get('pdf2', 'ReportController@descargar');
 Route::get('pdf', 'ReportController@generar');
 Auth::routes();

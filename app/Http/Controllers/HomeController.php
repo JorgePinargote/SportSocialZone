@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Publicacion;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
         return view('home');
+    }
+    public function raiz(){
+        $publicaciones=Publicacion::select('idequipo','equipo','deporte','titulo','texto')->get();
+        return view('welcome',compact('publicaciones'));
     }
 }

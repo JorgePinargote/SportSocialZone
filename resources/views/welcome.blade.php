@@ -5,8 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
         <title>Laravel</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"/>
@@ -51,6 +55,36 @@
                 </div>
             </header>
             <section>
+                <div class="row"><h2>Data Table</h2></div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                        <table id='myTable'>
+                            <tr>
+                                <th>ID</th>
+                                <th>Equipos</th>
+                                <th>Deporte</th>
+                                <th>Publicaciones</th>
+                                <th>Contenido</th>
+                            </tr>
+                            @foreach($publicaciones as $publicacion)
+                            <tr>
+                                <td>{{$publicacion->idequipo}} </td>
+                                <td>{{$publicacion->equipo}} </td>
+                                <td>{{$publicacion->deporte}}</td>
+                                <td>{{$publicacion->titulo}} </td>
+                                <td>{{$publicacion->texto}}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                        <script >
+                            $(document).ready( function () {
+                                $('#myTable').DataTable();
+                            } );
+                        </script>
+                    </div>
+                    <div class="col-sm-2"></div>    
+                </div>
                 <div class="row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-6">
