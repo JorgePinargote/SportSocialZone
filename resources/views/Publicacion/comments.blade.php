@@ -37,6 +37,7 @@
             getComments() {
               axios.get('/auth/comment/'+this.post._id)
                     .then((response) => {
+                      console.log(response.data);
                       this.comments = response.data
                     })
                     .catch(function (error) {
@@ -49,6 +50,7 @@
                 idpublicacion: this.post._id
               })
               .then((response) => {
+                console.log(response);
                 this.comments.unshift(response.data);
                 //console.log(response);
                 this.commentBox = '';
