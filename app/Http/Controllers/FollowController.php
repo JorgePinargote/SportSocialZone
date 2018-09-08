@@ -22,7 +22,7 @@ class FollowController extends Controller
 
     public function seguido($equipo)
     {
-        $follow = Follow::where('equipo','=',$equipo)->where('idusuario','=', Auth::user()->id)->get()->first();
+        $follow = Follow::where('equipo',(int)$equipo)->where('idusuario', (int)Auth::user()->id)->get()->first();
         if($follow != null){
             return 1;
         }
@@ -40,26 +40,29 @@ class FollowController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $input = request()->all();
-
         $request->validate([
             'idequipo' => 'required|string',
         ]);
-
-        $equipo = Equipo::find($input['idequipo']);
-        $user = Auth::user();
-        
-        $follow = new Follow;
-        $follow->idusuario = $user->id;
-        $follow->equipo = $equipo->id_Equipo;
-
-        $follow->save();
-        
-        return response()->json([
+        $idEq = $request->idequipo;
+        $nuevo =$this->seguido($idEq);
+        if($nuevo==1){
+            return response()->json([
+            'mensaje' => 'Ya sigue al equipo',
+        ]);
+            
+        }
+        else{
+            $equipo = Equipo::find($idEq);
+            $user = Auth::user();
+            $follow = new Follow;
+            $follow->idusuario = $user->id;
+            $follow->equipo = $equipo->id_Equipo;
+            $follow->save();
+            return response()->json([
             'mensaje' => 'siguiendo a ' . $equipo->name_Equipo,
             'followid'=> $follow->getKey(),
-        ], 200);
+        ]);
+        }
 
     }
 

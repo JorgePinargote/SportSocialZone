@@ -4,12 +4,13 @@
 <div>
     <h1 id ="Titulo">Publicaciones</h1>
 </div>
-<a id="cr" class="btn btn-primary" href="#">Volver</a>
+<a id="cr" class="btn btn-primary" href="/auth/publicaciones">Volver</a>
 <div>
     @foreach($todos as $equipo)
     <div class = "row deportes">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <div class ="datosDeporte">
+                {{ $equipo }}
                 <div>
                     <p class="tit">Entrenador: {{ $equipo->name }}</p>
                 </div>
@@ -22,8 +23,9 @@
             </div>
         </div>
         <div class = "col-lg-2 botones">
-            <button class = 'No seguir'></button>
-            <button class= 'seguir'></button>
+            <button class= 'seguir' onclick="seguir({{ $equipo->id_Equipo }})">
+                Seguir
+            </button>
         </div>
     </div>
     @endforeach

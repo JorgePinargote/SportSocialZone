@@ -50,7 +50,7 @@ Route::group([
 
         // rutas para el usuario general
 
-        Route::post('follow','FollowController@store')->name('follow.guardar');
+        Route::post('follow','FollowController@store');
         Route::delete('follow/{follow}','FollowController@destroy');
 
         Route::get('follow/{equipo}','FollowController@isFollowed');
