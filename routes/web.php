@@ -49,7 +49,7 @@ Route::group([
         Route::get('equipos-user','EquipoController@equiposPorUsuario');
         Route::get('noticia/crear/{equipo}','NoticiaController@crear')->name('noticia.crear');
         Route::post('noticia/actualizar','NoticiaController@actualizar')->name('noticia.actualizar');
-
+        Route::get('entrenadores/grafica','EquipoController@graficas');
         // rutas para el usuario general
 
         Route::post('follow','FollowController@store');
