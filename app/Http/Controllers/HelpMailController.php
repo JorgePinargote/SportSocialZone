@@ -13,14 +13,13 @@ class HelpMailController extends Controller
 {
     
     public function sendHelpMail(Request $request){
-        $input = request()->all;
         $request->validate([
             'nombre' => 'required|string',
             'email' => 'required|string',
             'asunto' => 'required|string',
             'mensaje' => 'required|string',
         ]);
-        
+        $input = request()->all();
         Mail::to('sportzonesocialnetwork@gmail.com')->send(new helpMail($input));
 
         return response()->json([
