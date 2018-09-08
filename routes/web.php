@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('grafico-userstoday','Graficosyreporte@usersToday');
 Route::get('grafico-equipos-deporte','Graficosyreporte@equiposDeporte');
 Route::post('helpmail','HelpMailController@sendHelpMail');
+Route::get('helpmail','HelpMailController@mostrar');
 
 //Route::get('idnoticia/{comment}','CommentController@idnoticia');
 

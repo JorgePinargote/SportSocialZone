@@ -40,7 +40,7 @@
                     <div class="top-right links">
                         <div class="dropdown">
                             @auth
-                            <a id="my-dropdown" href="{{ url('/home') }}" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Home</a>
+                            <a id="my-dropdown" href="{{ url('/auth/elegir') }}" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Home</a>
                             @else
                             <a id="my-dropdown" href="{{ route('login') }}" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Login</a>
                             <a id="my-dropdown" href="{{ route('register') }}" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Register</a>

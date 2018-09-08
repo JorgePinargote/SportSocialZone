@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 use App\Mail\helpMail;
+use Illuminate\Support\Facades\Auth;
 
 class HelpMailController extends Controller
 {
@@ -27,6 +28,11 @@ class HelpMailController extends Controller
         return response()->json([
             'mensaje' => 'email enviado correctamente'
         ], 200);
+    }
+
+    public function mostrar(){
+        $user= Auth::user();
+        return view('emails.help',compact('$user'));
     }
 
 
