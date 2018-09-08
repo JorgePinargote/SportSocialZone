@@ -14,7 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('pdf2', 'ReportController@descargar');
+Route::get('pdf', 'ReportController@generar');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -71,11 +72,9 @@ Route::group([
         Route::get('prueba','EquipoController@cont');
 
 
-        Route::get('pdf2', 'ReportController@descargar');
-
         Route::get('ver_equipos','EquipoController@todos');
 
-        Route::get('pdf', 'ReportController@generar');
+        
 
 
     });
