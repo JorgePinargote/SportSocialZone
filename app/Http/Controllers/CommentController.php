@@ -79,12 +79,8 @@ class CommentController extends Controller
         $publi = Publicacion::find($idpublicacion);
 
         if($publi != null){
-            return $publi->comentarios;
+            return $publi;
         }
-        
-        return response()->json([
-            'Message' => 'Publicacion no encontrada'
-        ],400);  
     }
 
 

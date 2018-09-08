@@ -10,7 +10,6 @@
     <div class = "row deportes">
         <div class="col-lg-10">
             <div class ="datosDeporte">
-                {{ $equipo }}
                 <div>
                     <p class="tit">Entrenador: {{ $equipo->name }}</p>
                 </div>

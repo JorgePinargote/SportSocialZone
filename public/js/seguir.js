@@ -6,7 +6,7 @@ function seguir(idEquipo){
 		data:{'idequipo':idEquipo},
 		dataType:'json',
 	    success: function(data){
-	    	console.log(data);
+	    	alert(data.data);
 
 	    },
 	    error:function(data){

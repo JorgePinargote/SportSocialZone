@@ -1,41 +1,24 @@
 @extends('layouts.app')
-
-
-
-
 @section('content')
-
-{{$publicacion}}
-
-
-
+{{ $publicacion->texto }}
 <h3>Comments:</h3>
-    <div style="margin-bottom:50px;">
-      <textarea class="form-control" rows="3" name="body" placeholder="Leave a comment" v-model="commentBox"></textarea>
-      <button class="btn btn-success" style="margin-top:10px" @click.prevent="postComment">Save Comment</button>
-    </div>
-    
-    <div class="media" style="margin-top:20px;" v-for="comment in comments">
-      <div class="media-left">
+<div style="margin-bottom:50px;">
+    <textarea class="form-control" rows="3" name="body" placeholder="Leave a comment" v-model="commentBox"></textarea>
+    <button class="btn btn-success" style="margin-top:10px" @click.prevent="postComment">Save Comment</button>
+</div>
+<div class="media" style="margin-top:20px;" v-for="comment in comments">
+    <div class="media-left">
         <a href="#">
-          <img class="media-object" src="http://placeimg.com/80/80" alt="...">
+            <img class="media-object" src="http://placeimg.com/80/80" alt="..."/>
         </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">@{{comment.username}} said...</h4>
-        <p>
-          @{{comment.comentario}}
-        </p>
-        <span style="color: #aaa;">on @{{comment.created_at}}</span>
-      </div>
     </div>
-
-
+    <div class="media-body">
+        <h4 class="media-heading">@{{ comment.username }} said...</h4>
+        <p>@{{ comment.comentario }}</p>
+        <span style="color: #aaa;">on @{{ comment.created_at }}</span>
+    </div>
+</div>
 @endsection
-
-
-
-
 @section('scripts')
 <script>
         const app = new Vue({  
@@ -86,5 +69,4 @@
           }
         })
       </script>
-
 @endsection

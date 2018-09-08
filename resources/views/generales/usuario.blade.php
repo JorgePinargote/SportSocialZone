@@ -25,7 +25,9 @@
             </div>
         </div>
         <div class = "col-lg-2 botones">
-            <a class="btn btn-primary" href="">Ver publicacion</a>
+            <a class="btn btn-primary" href="/auth/publicacion/{{ $publicacion->_id }}">
+                Ver publicacion
+            </a>
         </div>
     </div>
     @endforeach
