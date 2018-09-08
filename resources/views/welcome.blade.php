@@ -63,17 +63,14 @@
                     <div class="col-sm-5">
                         <h3>Deportes por Equipos</h3>
                     </div>
-                    <div class="col-sm-5">
-                        <h3>Usuarios Registrados</h3>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-5">
-                        <svg id='barGraph' width = "400" height = "400"></svg>
+                    <div class="col-sm-10">
+                        <svg id='barGraph' width = "700" height = "400"></svg>
                         <script> 
                             var margin = {top: 20, right: 20, bottom: 70, left: 40},
                                 width = 600 - margin.left - margin.right,
@@ -131,7 +128,17 @@
                             });
                         </script>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-5">
+                        <h3>Usuarios Registrados</h3>
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9">
                         <svg id='pieChart' width = "400" height = "400"></svg>
                         <script>
                             var w = 400;
