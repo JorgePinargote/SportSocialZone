@@ -39,11 +39,7 @@ class Graficosyreporte extends Controller
         $generales = $users->where('tipo','=','general');
 
         $datos = 
-        [
-            'entrenadores' => $entrenadores->count(),
-            'generales' => $generales->count(),
-            'totales' => $users->count(),
-        ];
+        [["label"=>"entrenadores","value"=>$entrenadores->count()],["label"=>"generales","value"=>$generales->count()],["label"=>"totales","value"=>$users->count()]];
 
         return response()->json($datos);
     }
