@@ -12,6 +12,7 @@
             <div class ="datosDeporte">
                 <div>
                     <p class="tit">Entrenador: {{ $equipo->name }}</p>
+                    }
                 </div>
                 <div>
                     <p class="tit">Nombre del Equipo: {{ $equipo->name_Equipo }}</p>
@@ -24,6 +25,9 @@
         <div class = "col-lg-2 botones">
             <button class= 'seguir' onclick="seguir({{ $equipo->id_Equipo }})">
                 Seguir
+            </button>
+            <button class= 'seguir' onclick="Noseguir({{ $equipo->id_Equipo }})">
+                No Seguir
             </button>
         </div>
     </div>

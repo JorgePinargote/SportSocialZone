@@ -61,7 +61,7 @@ form input.sub {
 }
 
 form input {
-	width: 220px;
+	width: 200px;
 	height: 35px;
 	padding: 0px 10px;
 	margin: 10px 30px;
@@ -622,4 +622,27 @@ form .nuevo2 {
 
 #correo_titulo {
 	margin: 0px;
+}
+
+footer {
+	background-color: #686C77;
+	height: 30px;
+}
+
+footer a {
+	color: white;
+	font-size: 1.5em;
+	float: right;
+}
+
+ul > li > div > a#salir {
+	color: black;
+}
+
+#navbarDropdown {
+	margin-left: 835px;
+}
+
+#cabecera {
+	padding-right: 0px;
 }

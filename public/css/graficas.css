@@ -1,0 +1,41 @@
+body {
+    background-color: #E7E6E8;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis {
+    font: 10px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.tabla {
+    padding: 45px;
+    border-radius: 50px;
+    border: solid black 1px;
+}
+
+#my-dropdown {
+    margin-top: 5px;
+    float: right;
+}
+
+.flex-center {
+    height: 50px;
+}
+
+.grafic {
+    margin: 30px 0px;
+}

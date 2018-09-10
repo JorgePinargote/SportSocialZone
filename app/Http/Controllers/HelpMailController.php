@@ -22,9 +22,7 @@ class HelpMailController extends Controller
         $input = request()->all();
         Mail::to('sportzonesocialnetwork@gmail.com')->send(new helpMail($input));
 
-        return response()->json([
-            'mensaje' => 'email enviado correctamente'
-        ], 200);
+         return redirect()->action('Controller@elegir');
     }
 
     public function mostrar(){

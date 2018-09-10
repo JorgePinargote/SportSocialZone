@@ -81,6 +81,27 @@ class FollowController extends Controller
         ], 200);
     }
 
+    public function destruir(Request $request){
+        $request->validate([
+            'idequipo' => 'required|string',
+        ]);
+        $idEq = $request->idequipo;
+        $nuevo =$this->seguido($idEq);
+        if($nuevo==1){
+            $follow = Follow::where('equipo',(int)$idEq)->where('idusuario', (int)Auth::user()->id)->get()->first();
+            $follow->delete();
+            return response()->json([
+            'mensaje' => 'borrado',
+        ]);
+            
+        }
+        else{
+            return response()->json(["mensaje" =>"no sigue a este equipo"]);
+        }
+
+
+    }
+
     
     //RUTAS PARA EL USUARIO GENERAL 
     public function isFollowed(Equipo $equipo){

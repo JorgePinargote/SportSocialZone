@@ -28,7 +28,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'auth/elegir';
+    protected function redirectTo()
+    {
+        return 'auth/elegir';
+    }
 
     /**
      * Create a new controller instance.

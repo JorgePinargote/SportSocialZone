@@ -13,26 +13,7 @@
         <link href='{{ asset('css/style.css') }}' rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet"/>
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
-        <style>
-            .bar{
-                fill: steelblue;
-            }
-
-            .bar:hover{
-                fill: brown;
-            }
-
-            .axis {
-                font: 10px sans-serif;
-            }
-
-            .axis path,
-            .axis line {
-                fill: none;
-                stroke: #000;
-                shape-rendering: crispEdges;
-            }
-        </style>
+        @yield('styles')
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,7 +24,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ url('/auth/elegir') }}">
                         <img id="logo" alt="no cargó" src="{{ asset('image/zs.jpg') }}"/>
                     </a>
                 </div>
@@ -52,13 +33,16 @@
                         <li class="active">
                             <a href="{{ url('/auth/elegir') }}">Home</a>
                         </li>
+                        <li>
+                            <a href="{{ url('/') }}">Graficas</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <a id="salir"class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                             </div>
                         </li>
@@ -67,6 +51,12 @@
             </div>
         </nav>
         <div class="container" id="cuerpo">@yield('content')</div>
-        <footer></footer>
+        <footer>
+            <div class ="col-sm-10"></div>
+            <div class ="col-sm-2">
+                <a href="{{ url('/auth/helpmail') }}">contactenos</a>
+            </div>
+        </footer>
+        @yield('scripts')
     </body>
 </html>

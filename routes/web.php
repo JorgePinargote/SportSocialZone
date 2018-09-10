@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', 'HomeController@raiz');
+Route::get('/','HomeController@raiz');
+
 Route::get('pdf2', 'ReportController@descargar');
 Route::get('pdf', 'ReportController@generar');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@raiz')->name('home');
 
 Route::get('grafico-userstoday','Graficosyreporte@usersToday');
 Route::get('grafico-equipos-deporte','Graficosyreporte@equiposDeporte');
@@ -36,6 +37,8 @@ Route::group([
       'middleware' => 'auth'
     ], function() {
 
+        Route::get('elegir','Controller@elegir');
+
         Route::get('user', 'AuthController@user');
 
         Route::resource('equipo','EquipoController'); 
@@ -50,9 +53,9 @@ Route::group([
 
         Route::post('follow','FollowController@store');
         Route::delete('follow/{follow}','FollowController@destroy');
+        Route::delete('follow','FollowController@destruir');
 
         Route::get('follow/{equipo}','FollowController@isFollowed');
-        Route::get('elegir','Controller@elegir');
 
         Route::get('publicaciones','PublicacionController@PublicacionesByFollow');
         Route::get('publicacion/{publicacion}','PublicacionController@show');

@@ -17,6 +17,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function raiz(){
+        $publicaciones=Publicacion::select('idequipo','equipo','deporte','titulo','texto')->get();
+        return view('welcome',compact('publicaciones'));
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -26,8 +31,5 @@ class HomeController extends Controller
     {  
         return view('home');
     }
-    public function raiz(){
-        $publicaciones=Publicacion::select('idequipo','equipo','deporte','titulo','texto')->get();
-        return view('welcome',compact('publicaciones'));
-    }
+
 }

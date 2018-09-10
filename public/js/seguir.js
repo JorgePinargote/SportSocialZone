@@ -6,7 +6,7 @@ function seguir(idEquipo){
 		data:{'idequipo':idEquipo},
 		dataType:'json',
 	    success: function(data){
-	    	alert(data.data);
+	    	alert(data.mensaje);
 
 	    },
 	    error:function(data){
@@ -17,15 +17,17 @@ function seguir(idEquipo){
 	
 }
 
-function llenar(){
+function Noseguir(idEquipo){
+	var id =document.getElementById(idEquipo);
+	var men="Borrado";
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		type: "POST",
+		type: "DELETE",
 		url: "http://127.0.0.1:8000/auth/follow",
 		data:{'idequipo':idEquipo},
 		dataType:'json',
 	    success: function(data){
-	    	console.log(data);
+	    	alert(data.mensaje);
 
 	    },
 	    error:function(data){
