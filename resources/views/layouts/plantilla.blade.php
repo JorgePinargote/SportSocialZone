@@ -68,5 +68,6 @@
         </nav>
         <div class="container" id="cuerpo">@yield('content')</div>
         <footer></footer>
+        @yield('scripts')
     </body>
 </html>
