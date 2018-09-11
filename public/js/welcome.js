@@ -52,6 +52,7 @@ $(document).ready(function() {
     var aColor = ['rgb(178, 55, 56)', 'rgb(239, 183, 182)']
     $(function() {
         $.get('grafico-userstoday', function(data) {
+            console.log(data);
             // var counts = {};
             var vis = d3.select('#pieChart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
             var pie = d3.layout.pie().value(function(d) {
